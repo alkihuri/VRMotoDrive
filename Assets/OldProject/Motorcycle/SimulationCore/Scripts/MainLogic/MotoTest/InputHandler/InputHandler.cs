@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.XR; 
@@ -45,15 +46,31 @@ public class InputHandler : MonoSinglethon<InputHandler>
             GetDevice();
         }
 
+
+        if (device.isValid)
+            VrInput();
+        else
+            OldInput();
+    }
+
+    private void OldInput()
+    {
+        Torque = Input.GetAxis("Vertical");
+        Steer = Input.GetAxis("Horizontal");    
+        Brake = Input.GetAxis("Jump");  
+    }
+
+    private void VrInput()
+    {
         // capturing trigger button press and release    
         bool triggerButtonValue = false;
         if (device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonValue) && triggerButtonValue && !triggerIsPressed)
         {
-            triggerIsPressed = true; 
+            triggerIsPressed = true;
         }
         else if (!triggerButtonValue && triggerIsPressed)
         {
-            triggerIsPressed = false; 
+            triggerIsPressed = false;
         }
 
         // capturing primary button press and release
@@ -62,11 +79,11 @@ public class InputHandler : MonoSinglethon<InputHandler>
 
         if (device.TryGetFeatureValue(primaryButtonUsage, out primaryButtonValue) && primaryButtonValue && !primaryButtonIsPressed)
         {
-            primaryButtonIsPressed = true; 
+            primaryButtonIsPressed = true;
         }
         else if (!primaryButtonValue && primaryButtonIsPressed)
         {
-            primaryButtonIsPressed = false; 
+            primaryButtonIsPressed = false;
         }
 
         // capturing primary 2D Axis changes and release
@@ -85,12 +102,12 @@ public class InputHandler : MonoSinglethon<InputHandler>
         if (device.TryGetFeatureValue(primary2DAxisUsage, out primary2DAxisValue) && primary2DAxisValue != Vector2.zero && !primary2DAxisIsChosen)
         {
             prevPrimary2DAxisValue = primary2DAxisValue;
-            primary2DAxisIsChosen = true; 
+            primary2DAxisIsChosen = true;
         }
         else if (primary2DAxisValue == Vector2.zero && primary2DAxisIsChosen)
         {
             prevPrimary2DAxisValue = primary2DAxisValue;
-            primary2DAxisIsChosen = false; 
+            primary2DAxisIsChosen = false;
         }
 
         // capturing grip value
@@ -99,17 +116,18 @@ public class InputHandler : MonoSinglethon<InputHandler>
 
         if (device.TryGetFeatureValue(gripUsage, out gripValue) && gripValue > 0 && !gripIsPressed)
         {
-            gripIsPressed = true; 
+            gripIsPressed = true;
         }
         else if (gripValue == 0 && gripIsPressed)
         {
-            gripIsPressed = false; 
+            gripIsPressed = false;
         }
 
 
 
-        Torque =  primary2DAxisValue.y;
+        Torque = primary2DAxisValue.y;
         Steer = primary2DAxisValue.x;
-    }
 
+        Brake = triggerButtonValue ? 1 : 0;
+    }
 }

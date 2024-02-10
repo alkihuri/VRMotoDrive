@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   ACCELARATION_100_Km_H:
-    value: 5
+    value: 5.13
     definition: 
   MAX_SPEED_ACCELEARTION:
     value: 15
