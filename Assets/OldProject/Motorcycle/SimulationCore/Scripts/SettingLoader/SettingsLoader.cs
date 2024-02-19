@@ -9,6 +9,7 @@ public class SettingsLoader : MonoSinglethon<SettingsLoader>
 
     string path = Application.streamingAssetsPath + "/VehiclePhysicSetting.json";
 
+    VehiclePhysicSetting setting;
 
     [ContextMenu("Write to json")]
     public void WriteToStreamingAssets()
@@ -49,6 +50,7 @@ public class SettingsLoader : MonoSinglethon<SettingsLoader>
 
     private void SettingsInnit()
     {
+        setting = new VehiclePhysicSetting();
         ReadFromStreamingAssets();
         if (_settings == null)
         {
@@ -60,7 +62,6 @@ public class SettingsLoader : MonoSinglethon<SettingsLoader>
 
     public VehiclePhysicSetting UpdateVehiclePhysicsSettings(VehiclePhysicSettingFromJson settingsFromJson)
     {
-        VehiclePhysicSetting setting = new VehiclePhysicSetting();
         setting.ACCELARATION_100_Km_H = settingsFromJson.ACCELARATION_100_Km_H;
         setting.MAX_SPEED_ACCELEARTION = settingsFromJson.MAX_SPEED_ACCELEARTION;
         setting.MAX_SPEED = settingsFromJson.MAX_SPEED;
