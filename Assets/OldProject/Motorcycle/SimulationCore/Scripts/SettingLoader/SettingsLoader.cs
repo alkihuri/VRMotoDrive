@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Mirror;
 
 public class SettingsLoader : MonoSinglethon<SettingsLoader>
 {
@@ -15,11 +16,11 @@ public class SettingsLoader : MonoSinglethon<SettingsLoader>
     public void WriteToStreamingAssets()
     {
         if (File.Exists(path))
-        { 
+        {
             File.WriteAllText(Application.streamingAssetsPath + "/VehiclePhysicSetting.json", JsonUtility.ToJson(_settings));
         }
         else
-        { 
+        {
             File.Create(path);
             WriteToStreamingAssets();
         }
@@ -35,21 +36,29 @@ public class SettingsLoader : MonoSinglethon<SettingsLoader>
     [SerializeField]
     private VehiclePhysicSetting _settings;
 
-    public VehiclePhysicSetting Settings 
-    { 
+    public VehiclePhysicSetting Settings
+    {
         get
         {
+            SettingsInnit();
             _settings = UpdateVehiclePhysicsSettings(JsonUtility.FromJson<VehiclePhysicSettingFromJson>(File.ReadAllText(path)));
             return _settings;
             WriteToStreamingAssets();
         }
-        set => _settings = value; 
+        set => _settings = value;
     }
 
     private void Awake() => SettingsInnit();
 
+    private void OnEnable()
+    {
+        SettingsInnit();
+    }
+
     private void SettingsInnit()
     {
+
+
         setting = new VehiclePhysicSetting();
         ReadFromStreamingAssets();
         if (_settings == null)
@@ -62,6 +71,9 @@ public class SettingsLoader : MonoSinglethon<SettingsLoader>
 
     public VehiclePhysicSetting UpdateVehiclePhysicsSettings(VehiclePhysicSettingFromJson settingsFromJson)
     {
+
+
+
         setting.ACCELARATION_100_Km_H = settingsFromJson.ACCELARATION_100_Km_H;
         setting.MAX_SPEED_ACCELEARTION = settingsFromJson.MAX_SPEED_ACCELEARTION;
         setting.MAX_SPEED = settingsFromJson.MAX_SPEED;

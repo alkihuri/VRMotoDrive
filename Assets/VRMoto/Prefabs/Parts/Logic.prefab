@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcef19d7b7fe2b4d8483d17c0a8105b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _forwardBrake: 0
   _rearBrake: 0
 --- !u!114 &2866354297394539565
@@ -187,6 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a791ee1ec0fa140985a9ebb055c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _forwardWheel: {fileID: 0}
   _rearWheel: {fileID: 0}
   _enginePowerCurve:
@@ -229,6 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc3b6c2f4d04a24299bcce3d51d7b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Torque: 0
+  Steer: 0
+  Brake: 0
   xRNode: 5
 --- !u!1 &7668766785303234897
 GameObject:

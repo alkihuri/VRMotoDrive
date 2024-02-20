@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.XR; 
+using UnityEngine.XR;
 
 public class InputHandler : MonoSinglethon<InputHandler>
 {
-    public float Torque { get; internal set; }
-    public float Steer { get; internal set; }
-    public float Brake { get; internal set; }
+
+    public float Torque;
+    public float Steer;
+    public float Brake;
 
     [SerializeField]
     private XRNode xRNode = XRNode.RightHand;
@@ -56,8 +57,8 @@ public class InputHandler : MonoSinglethon<InputHandler>
     private void OldInput()
     {
         Torque = Input.GetAxis("Vertical");
-        Steer = Input.GetAxis("Horizontal");    
-        Brake = Input.GetAxis("Jump");  
+        Steer = Input.GetAxis("Horizontal");
+        Brake = Input.GetAxis("Jump");
     }
 
     private void VrInput()
@@ -124,10 +125,14 @@ public class InputHandler : MonoSinglethon<InputHandler>
         }
 
 
-
+        /*
         Torque = primary2DAxisValue.y;
-        Steer = primary2DAxisValue.x;
+        Steer = primary2DAxisValue.x; 
+        Brake = triggerButtonValue ? 1 : 0;
+        */
 
+        Torque = HeadPositionHandler.Instance.HeadXAngle;
+        Steer = HeadPositionHandler.Instance.HeadZAngle;
         Brake = triggerButtonValue ? 1 : 0;
     }
 }

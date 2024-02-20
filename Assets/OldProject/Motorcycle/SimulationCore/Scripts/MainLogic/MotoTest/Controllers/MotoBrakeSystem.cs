@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class MotoBrakeSystem : MonoBehaviour
     private WheelCollider _rear;
     private IVelocityController _velocityController;
 
-    [Header("Current brake velues")]
+    [Header("Current brake values")]
     [SerializeField, Range(0, MAX_BRAKE)] float _forwardBrake;
     [SerializeField, Range(0, MAX_BRAKE)] float _rearBrake;
     private float _brakeInput;
@@ -37,6 +38,10 @@ public class MotoBrakeSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer) return;
+
+
         SpeedCoefficientCalc();
         BrakeDifferntial();
 
@@ -75,12 +80,18 @@ public class MotoBrakeSystem : MonoBehaviour
 
     private void InspectorInfoUotPut()
     {
+        if (_forward == null || _rear == null)
+            return;
+
         _forwardBrake = _forward.brakeTorque;
         _rearBrake = _rear.brakeTorque;
     }
 
     public void ReleaseBrakes()
     {
+        if (_forward == null || _rear == null)
+            return;
+
         _forward.brakeTorque = 0;
         _rear.brakeTorque = 0;
     }

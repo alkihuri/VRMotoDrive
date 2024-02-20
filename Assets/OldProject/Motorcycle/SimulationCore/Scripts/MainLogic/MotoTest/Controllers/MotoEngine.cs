@@ -1,3 +1,4 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -100,6 +101,10 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
 
     private void FixedUpdate()
     {
+
+
+        if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer) return;
+
         Engine();
     }
 

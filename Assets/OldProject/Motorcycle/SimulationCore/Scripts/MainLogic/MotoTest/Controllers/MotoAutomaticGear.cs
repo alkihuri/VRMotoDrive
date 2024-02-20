@@ -42,6 +42,12 @@ public class MotoAutomaticGear : VehicleGerBoxSystem, IVehicleGearBox
         Settings();
     }
 
+    private void OnEnable()
+    {
+        Cashing();
+        Settings();
+    }
+
     private void Settings()
     {
         if (GearsNum == null)
@@ -60,6 +66,13 @@ public class MotoAutomaticGear : VehicleGerBoxSystem, IVehicleGearBox
 
     public void SetGear(int gear)
     {
+        if(_motoEngine == null)
+        {
+            Debug.Log("There is no engine!"); 
+            _motoEngine = GetComponent<IVehicleEngine>();
+            return;
+        }
+
         _motoEngine.SetGear(gear);
     }
 

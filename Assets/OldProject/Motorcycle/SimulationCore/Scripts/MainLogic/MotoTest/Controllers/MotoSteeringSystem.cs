@@ -45,6 +45,11 @@ public class MotoSteeringSystem : VehicleSteerSystemBase, IVehicleSteeringSystem
         Settings();
     }
 
+    private void OnEnable()
+    {
+        Cashing(); 
+    }
+
     private void Settings()
     {
         SteerCurveInnit();

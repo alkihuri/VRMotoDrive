@@ -1,7 +1,9 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class BodyViewController : MonoBehaviour
 {
@@ -46,7 +48,11 @@ public class BodyViewController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RullerAimation();
+
+        if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer)
+            return;
+
+            RullerAimation();
         Lean();
     }
 
