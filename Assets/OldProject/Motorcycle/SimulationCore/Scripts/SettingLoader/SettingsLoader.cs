@@ -58,8 +58,8 @@ public class SettingsLoader : MonoSinglethon<SettingsLoader>
     private void SettingsInnit()
     {
 
+        setting = setting == null ? new VehiclePhysicSetting() : setting;
 
-        setting = new VehiclePhysicSetting();
         ReadFromStreamingAssets();
         if (_settings == null)
         {

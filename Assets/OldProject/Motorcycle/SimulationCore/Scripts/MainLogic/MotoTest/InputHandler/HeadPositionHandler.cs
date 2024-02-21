@@ -5,6 +5,12 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
 {
+    [Header("Curves")]
+    [SerializeField] AnimationCurve _steerCurve;
+
+
+    [Header("Settings")]
+    [SerializeField, Range(1, 100)] private int SENSIVITY = 15;
     [SerializeField] Transform _vrHead;
 
     [SerializeField, Range(-1, 1)] float _headPositionX;
@@ -19,7 +25,7 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
     public float HeadPositionY { get => Mathf.Clamp(_headPositionY * 10, -1, 1); set => _headPositionY = value; }
     public float HeadPositionZ { get => Mathf.Clamp(_headPositionZ * 10, -1, 1); set => _headPositionZ = value; }
     public float HeadZAngle
-    { 
+    {
 
         get
         {
@@ -29,8 +35,13 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
             {
                 angle -= 360;
             }
-            return Mathf.Clamp(-angle / 20, -1, 1);
-        } 
+
+            var absAngle = Mathf.Abs(angle);
+
+            float reversedClamp = Mathf.InverseLerp(0, angle, SENSIVITY);
+
+            return Mathf.Clamp(-angle / (SENSIVITY * _steerCurve.Evaluate(reversedClamp)), -1, 1);
+        }
 
         set => _headZAngle = value;
     }
@@ -44,7 +55,13 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
             {
                 angle -= 360;
             }
-            return Mathf.Clamp(angle / 20, -1, 1);
+
+            var absAngle = Mathf.Abs(angle);
+
+            float reversedClamp = Mathf.InverseLerp(0, angle, SENSIVITY);
+
+
+            return Mathf.Clamp(angle / (SENSIVITY * _steerCurve.Evaluate(reversedClamp)), -1, 1);
         }
         set => _headXAngle = value;
     }

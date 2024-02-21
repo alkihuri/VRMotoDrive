@@ -1139,7 +1139,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  playerCamera: {fileID: 2311284027677217253}
+  gameObjectsOfLocalPlayer:
+  - {fileID: 2534954208365222358}
 --- !u!1 &2534954208365222358
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,8 @@ public class InputHandler : MonoSinglethon<InputHandler>
     private Vector2 prevPrimary2DAxisValue;
     private bool gripIsPressed;
 
+    public bool IsVRMode { get; private set; }
+
     void GetDevice()
     {
         InputDevices.GetDevicesAtXRNode(xRNode, devices);
@@ -42,16 +44,11 @@ public class InputHandler : MonoSinglethon<InputHandler>
 
     void Update()
     {
-        if (!device.isValid)
-        {
-            GetDevice();
-        }
+        if (!device.isValid) GetDevice();
+        if (device.isValid) IsVRMode = true;
 
-
-        if (device.isValid)
-            VrInput();
-        else
-            OldInput();
+        if (IsVRMode) VrInput();
+        else OldInput();
     }
 
     private void OldInput()
