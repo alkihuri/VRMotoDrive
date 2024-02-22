@@ -130,6 +130,6 @@ public class InputHandler : MonoSinglethon<InputHandler>
 
         Torque = HeadPositionHandler.Instance.HeadXAngle;
         Steer = HeadPositionHandler.Instance.HeadZAngle;
-        Brake = triggerButtonValue ? 1 : 0;
+        Brake = triggerButtonValue || Torque < 0 ? 1 : 0;
     }
 }

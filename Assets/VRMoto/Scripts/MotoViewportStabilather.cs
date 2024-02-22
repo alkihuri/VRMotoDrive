@@ -31,13 +31,21 @@ public class MotoViewportStabilather : MonoBehaviour
         _lastTickAngle = _viewPortAnchor.eulerAngles;
         _delta = _currentickAngle - _lastTickAngle;
 
-        var newAnlge = _viewPortAnchor.eulerAngles + _delta;
+        var stabilazedY = (_viewPortAnchor.eulerAngles + _delta).y;
+
+        var newAnlge = new Vector3
+
+            (
+                transform.eulerAngles.x,
+                stabilazedY,
+                transform.eulerAngles.z
+            );
 
 
         transform.DORotate(newAnlge, TICK)
             .SetEase(Ease.Linear)
-            .OnStart(() => IsStabilazing = true)
-            .OnComplete(() => IsStabilazing = false);
+                .OnStart(() => IsStabilazing = true)
+                    .OnComplete(() => IsStabilazing = false);
     }
 
 }

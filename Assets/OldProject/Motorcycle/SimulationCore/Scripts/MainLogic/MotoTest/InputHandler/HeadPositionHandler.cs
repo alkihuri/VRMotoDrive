@@ -10,16 +10,16 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
 
 
     [Header("Settings")]
-    [SerializeField, Range(1, 100)] private int SENSIVITY = 15;
+    [SerializeField, Range(1, 100)] private int SENSIVITY = 10;
     [SerializeField] Transform _vrHead;
 
     [SerializeField, Range(-1, 1)] float _headPositionX;
     [SerializeField, Range(-1, 1)] float _headPositionY;
     [SerializeField, Range(-1, 1)] float _headPositionZ;
 
-    [SerializeField, Range(-45, 45)] float _headZAngle;
+    [SerializeField, Range(-0, 360)] float _headZAngle;
 
-    [SerializeField, Range(-45, 45)] float _headXAngle;
+    [SerializeField, Range(-0, 360)] float _headXAngle;
 
     public float HeadPositionX { get => Mathf.Clamp(_headPositionX * 10, -1, 1); set => _headPositionX = value; }
     public float HeadPositionY { get => Mathf.Clamp(_headPositionY * 10, -1, 1); set => _headPositionY = value; }
@@ -38,9 +38,8 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
 
             var absAngle = Mathf.Abs(angle);
 
-            float reversedClamp = Mathf.InverseLerp(0, angle, SENSIVITY);
 
-            return Mathf.Clamp(-angle / (SENSIVITY * _steerCurve.Evaluate(reversedClamp)), -1, 1);
+            return Mathf.Clamp(-angle /SENSIVITY, -1, 1);
         }
 
         set => _headZAngle = value;
@@ -61,7 +60,7 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
             float reversedClamp = Mathf.InverseLerp(0, angle, SENSIVITY);
 
 
-            return Mathf.Clamp(angle / (SENSIVITY * _steerCurve.Evaluate(reversedClamp)), -1, 1);
+            return Mathf.Clamp((angle / (SENSIVITY * _steerCurve.Evaluate(reversedClamp))) * 2, -1, 1);
         }
         set => _headXAngle = value;
     }
