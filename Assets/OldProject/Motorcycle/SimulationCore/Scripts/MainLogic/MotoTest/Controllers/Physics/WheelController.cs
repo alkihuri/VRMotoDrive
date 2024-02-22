@@ -37,9 +37,11 @@ public class WheelController : MonoBehaviour
     private void WheelFriction()
     {
         Speed = _velocityController.GetCurrentSpeed();
+
+
         Stifnes = Mathf.Clamp(Speed / 10, 1, 8);
-        ApplyFriction(Stifnes, _forwardWheel);
-        Stifnes = Mathf.Clamp(Speed / 10, 1, 8);
+
+        ApplyFriction(Stifnes, _forwardWheel); 
         ApplyFriction(Stifnes, _rearWheel);
     }
 

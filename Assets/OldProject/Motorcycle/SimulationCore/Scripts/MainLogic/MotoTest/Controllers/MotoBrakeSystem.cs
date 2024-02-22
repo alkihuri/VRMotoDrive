@@ -39,7 +39,11 @@ public class MotoBrakeSystem : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer) return;
+        if (GetComponentInParent<NetworkIdentity>())
+        {
+            if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer)
+                return;
+        }
 
 
         SpeedCoefficientCalc();

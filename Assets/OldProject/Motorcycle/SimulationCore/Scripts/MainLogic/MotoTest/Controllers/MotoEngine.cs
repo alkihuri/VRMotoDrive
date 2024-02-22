@@ -13,7 +13,7 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
     private float _maxSpeed;
     private bool _reversing;
     private float _motorInput;
-    [Header("Engine  power settings:")] 
+    [Header("Engine  power settings:")]
     [SerializeField] AnimationCurve _enginePowerCurve;
     [SerializeField] private int _currentGear;
     private float _gearShiftRate;
@@ -60,10 +60,10 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
         EngineTorque = 5500f;
         MaxEngineRPM = 6000f;
         MinEngineRPM = 1000f;
-        MaxSpeed = SettingsLoader.Instance.Settings.MAX_SPEED.value; 
+        MaxSpeed = SettingsLoader.Instance.Settings.MAX_SPEED.value;
     }
 
-   
+
 
     public void ApplyTorque(float torque)
     {
@@ -71,7 +71,7 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
     }
 
     void Engine()
-    { 
+    {
         EngineRPM = Mathf.Clamp((((Mathf.Abs((_forwardWheel.rpm + _rearWheel.rpm))) + MinEngineRPM)) / (CurrentGear + 1), MinEngineRPM, MaxEngineRPM);
         _enginePowerOverLifeTime.AddKey(Time.frameCount, EngineRPM);
 
@@ -102,8 +102,11 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
     private void FixedUpdate()
     {
 
-
-        if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer) return;
+        if (GetComponentInParent<NetworkIdentity>())
+        {
+            if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer)
+                return;
+        }
 
         Engine();
     }

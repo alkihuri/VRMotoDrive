@@ -49,10 +49,13 @@ public class BodyViewController : MonoBehaviour
     void Update()
     {
 
-        if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer)
-            return;
+        if (GetComponentInParent<NetworkIdentity>())
+        {
+            if (!GetComponentInParent<NetworkIdentity>().isLocalPlayer)
+                return;
+        }
 
-            RullerAimation();
+        RullerAimation();
         Lean();
     }
 

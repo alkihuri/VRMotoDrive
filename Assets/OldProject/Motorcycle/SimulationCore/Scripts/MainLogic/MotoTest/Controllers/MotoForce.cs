@@ -57,8 +57,10 @@ public class MotoForce : VehicleForce, IVehicleForces
         if (IsWhellie)
             return;
 
+        var speed = _rigidBody.velocity.magnitude / 250;
+        var clampedSpeed = Mathf.Clamp(speed, 1, 2);
 
-        _rigidBody.AddForce(Physics.gravity, ForceMode.Acceleration);
+        _rigidBody.AddForce(Physics.gravity * clampedSpeed, ForceMode.Acceleration);
     }
     // Update is called once per frame
     void FixedUpdate()
