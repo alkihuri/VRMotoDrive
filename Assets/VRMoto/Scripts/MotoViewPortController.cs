@@ -32,7 +32,8 @@ public class MotoViewPortController : MonoBehaviour
 
     private void Start()
     {
-        Recenter(); 
+        Recenter();
+        Invoke("Recenter", 0.1f);
     }
 }
 

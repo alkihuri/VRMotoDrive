@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VRMoto/Scenes/Multiplayer/Start_Lobby_Scene.unity
-    guid: c1b2d720f2a6dfa4db7142e3aa200762
-  - enabled: 1
-    path: Assets/VRMoto/Scenes/Multiplayer/Multiplayer_Track.unity
-    guid: 89bd7476ec419cc4ea573bf6774ed55e
+    path: Assets/VRMoto/Scenes/VR/VR_MotorCycleTestSceneVR_RallyTrack.unity
+    guid: 4f2646f0079a3e0408fc349b0050f692
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
