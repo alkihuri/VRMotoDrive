@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/VRMoto/Scenes/SceneSelecter/Scene_select_singleplayer.unity
+    guid: 996c8dfbe3ea66a4dbacff62fe3a92cc
+  - enabled: 1
     path: Assets/VRMoto/Scenes/VR/VR_MotorCycleTestSceneVR_RallyTrack.unity
     guid: 4f2646f0079a3e0408fc349b0050f692
   m_configObjects:

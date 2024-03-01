@@ -9,23 +9,23 @@ using Unity.VisualScripting;
 public class SinglePlayerUIManager : MonoBehaviour
 {
     public const string GAME_SCENE_NAME = "VR_MotorCycleTestSceneVR_RallyTrack";
+    public const string SELECT_GAME_SCENE_NAME = "Scene_select_singleplayer";
 
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-    }
 
-
-    public void StartGame()
-    {
         if (UIFader.Instance != null)
         {
-            UIFader.Instance.FadeOut(() => LoadScene(GAME_SCENE_NAME));
+            UIFader.Instance.FadeOut(() => SceneManager.LoadScene(sceneName));
         }
         else
         {
-            LoadScene(GAME_SCENE_NAME);
+            SceneManager.LoadScene(GAME_SCENE_NAME);
         }
     }
+
+
+    public void StartSelectGameScene() => LoadScene(SELECT_GAME_SCENE_NAME);
+    public void StartGame() => LoadScene(GAME_SCENE_NAME);
 
 }
