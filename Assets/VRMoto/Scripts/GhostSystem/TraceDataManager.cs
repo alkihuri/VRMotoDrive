@@ -16,10 +16,11 @@ public class TraceDataManager : MonoBehaviour
 
     public int LastID;
 
+    [SerializeField, Range(0, 10)] public int DrawPathIndex;
 
     private void Awake()
     {
-        _tracePathController.OnLapFinished.AddListener(OnLapFinished);
+        _tracePathController.OnPathComplete.AddListener(OnLapFinished);
         LoadData();
     }
 
@@ -42,11 +43,18 @@ public class TraceDataManager : MonoBehaviour
     [Button("Load data")]
     public void LoadData()
     {
+        if (!System.IO.File.Exists(Application.streamingAssetsPath + "/" + DATA_PATH))
+        {
+            Debug.LogWarning("File not found");
+            _lapData = new LapData();
+            return;
+        }
+
         string json = System.IO.File.ReadAllText(Application.streamingAssetsPath + "/" + DATA_PATH);
         var data = JsonUtility.FromJson<LapData>(json);
 
         if (data != null)
-        { 
+        {
             _lapData.LapPoints.AddRange(data.LapPoints);
             LastID = _lapData.LapPoints.Count;
         }
@@ -55,6 +63,39 @@ public class TraceDataManager : MonoBehaviour
             _lapData = new LapData();
             _lapData.LapPoints = new List<LapPoints>();
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_lapData != null)
+        {
+            if (_lapData.LapPoints.Count > 0)
+                if (_lapData.LapPoints.Where(x => x.ID == DrawPathIndex).ToList().Count > 0)
+                {
+                    var points = _lapData.LapPoints.Where(x => x.ID == DrawPathIndex).FirstOrDefault();
+
+                    if (points.Points.Count > 0)
+                    {
+                        // draw line between points
+                        for (int i = 0; i < points.Points.Count - 1; i++)
+                        {
+                            Gizmos.color = Color.blue;
+                            Gizmos.DrawLine(points.Points[i].Position, points.Points[i + 1].Position);
+                        }
+                        // draw betwean first and last point    
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawLine(points.Points.First().Position, points.Points.Last().Position);
+                    }
+
+                    // draw line betwean last and first point
+                    if (points.Points.Count > 0)
+                    {
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawLine(points.Points.Last().Position, points.Points.First().Position);
+                    }
+                }
+        }
+
     }
 }
 

@@ -45,6 +45,345 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b768f890c57db04bb5887c439550b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lapData:
+    LapPoints:
+    - Points:
+      - Position: {x: -19.999678, y: 1.2693889, z: -134.00803}
+        Time: 0.35333335
+      - Position: {x: -19.7805, y: 1.1921167, z: -134.00574}
+        Time: 0.59853864
+      - Position: {x: -19.293865, y: 1.1344824, z: -134.00055}
+        Time: 0.8040897
+      - Position: {x: -18.61509, y: 1.083364, z: -133.99486}
+        Time: 1.0189064
+      - Position: {x: -17.493834, y: 1.0302963, z: -133.9911}
+        Time: 1.2293842
+      - Position: {x: -15.796061, y: 0.98215693, z: -133.9925}
+        Time: 1.4340931
+      - Position: {x: -13.560484, y: 0.9350293, z: -133.99573}
+        Time: 1.6389328
+      - Position: {x: -10.673598, y: 0.9225067, z: -134.1335}
+        Time: 1.8420844
+      - Position: {x: -7.668876, y: 0.9268006, z: -134.25134}
+        Time: 2.046855
+      - Position: {x: -4.287627, y: 0.93117553, z: -134.37946}
+        Time: 2.2590833
+      - Position: {x: -0.13421121, y: 0.93837273, z: -134.53679}
+        Time: 2.4616897
+      - Position: {x: 4.0349693, y: 0.9446441, z: -134.6948}
+        Time: 2.667049
+      - Position: {x: 8.576899, y: 0.95115256, z: -134.8677}
+        Time: 2.8745627
+      - Position: {x: 13.99992, y: 0.9563655, z: -135.07527}
+        Time: 3.0836048
+      - Position: {x: 19.31643, y: 0.96853596, z: -135.27943}
+        Time: 3.2940223
+      - Position: {x: 25.588905, y: 0.97776395, z: -135.52039}
+        Time: 3.5049403
+      - Position: {x: 31.676395, y: 0.9878514, z: -135.75441}
+        Time: 3.7171206
+      - Position: {x: 38.129814, y: 0.99714863, z: -135.98973}
+        Time: 3.917566
+      - Position: {x: 45.652584, y: 1.0057021, z: -136.19289}
+        Time: 4.1218166
+      - Position: {x: 52.874302, y: 1.0137221, z: -136.3828}
+        Time: 4.3305917
+      - Position: {x: 60.459602, y: 1.0222725, z: -136.58539}
+        Time: 4.533152
+      - Position: {x: 68.482, y: 1.0303388, z: -136.79718}
+        Time: 4.7344313
+      - Position: {x: 77.46311, y: 1.0298976, z: -136.85094}
+        Time: 4.9385657
+      - Position: {x: 88.59811, y: 1.0291293, z: -136.6885}
+        Time: 5.1460037
+      - Position: {x: 99.86698, y: 1.0254894, z: -136.50912}
+        Time: 5.3547373
+      - Position: {x: 113.52501, y: 1.0241822, z: -136.32536}
+        Time: 5.560839
+      - Position: {x: 127.01018, y: 1.0259566, z: -136.17404}
+        Time: 5.7657595
+      - Position: {x: 140.9122, y: 1.0315862, z: -136.03902}
+        Time: 5.9754767
+      - Position: {x: 154.80582, y: 1.0404072, z: -135.91512}
+        Time: 6.179823
+      - Position: {x: 170.08234, y: 1.0456293, z: -135.573}
+        Time: 6.3841195
+      - Position: {x: 183.76944, y: 1.0216379, z: -134.43497}
+        Time: 6.5856757
+      - Position: {x: 197.55351, y: 0.9727153, z: -132.6908}
+        Time: 6.7878776
+      - Position: {x: 210.99269, y: 0.92434925, z: -130.83311}
+        Time: 6.9992914
+      - Position: {x: 225.31982, y: 0.8751576, z: -128.77974}
+        Time: 7.206088
+      - Position: {x: 239.10757, y: 0.84536743, z: -127.01192}
+        Time: 7.4133744
+      - Position: {x: 252.95808, y: 0.840041, z: -125.89119}
+        Time: 7.613879
+      - Position: {x: 266.84702, y: 0.8581954, z: -125.12642}
+        Time: 7.8189387
+      - Position: {x: 282.1283, y: 0.89002573, z: -124.39405}
+        Time: 8.025697
+      - Position: {x: 296.0132, y: 0.92816216, z: -123.752686}
+        Time: 8.233006
+      - Position: {x: 309.89166, y: 0.9657701, z: -122.93727}
+        Time: 8.439721
+      - Position: {x: 325.108, y: 0.9917111, z: -121.35216}
+        Time: 8.640293
+      - Position: {x: 338.89957, y: 1.0137882, z: -119.56574}
+        Time: 8.841453
+      - Position: {x: 352.64713, y: 1.0380027, z: -117.5407}
+        Time: 9.048685
+      - Position: {x: 366.31253, y: 1.0512514, z: -114.95768}
+        Time: 9.25968
+      - Position: {x: 381.1464, y: 1.052357, z: -111.23953}
+        Time: 9.468207
+      - Position: {x: 394.3902, y: 1.0312703, z: -106.99088}
+        Time: 9.672179
+      - Position: {x: 407.52185, y: 1.0210328, z: -102.435036}
+        Time: 9.874937
+      - Position: {x: 421.84314, y: 1.0255227, z: -97.07418}
+        Time: 10.0806055
+      - Position: {x: 434.38962, y: 1.0161121, z: -91.09245}
+        Time: 10.282933
+      - Position: {x: 446.22845, y: 0.98520905, z: -83.809204}
+        Time: 10.483513
+      - Position: {x: 457.1425, y: 0.9118802, z: -75.20114}
+        Time: 10.688222
+      - Position: {x: 467.52866, y: 0.8490984, z: -65.95773}
+        Time: 10.898612
+      - Position: {x: 478.7982, y: 0.8490985, z: -55.60945}
+        Time: 11.105082
+      - Position: {x: 488.9985, y: 0.91535366, z: -46.163628}
+        Time: 11.309994
+      - Position: {x: 498.81387, y: 1.0313919, z: -36.326107}
+        Time: 11.519836
+      - Position: {x: 507.78647, y: 1.1603838, z: -23.984016}
+        Time: 11.720398
+      - Position: {x: 513.4128, y: 1.1882225, z: -11.295557}
+        Time: 11.922996
+      - Position: {x: 517.3299, y: 1.1482844, z: 2.0455198}
+        Time: 12.133606
+      - Position: {x: 520.55615, y: 1.1396098, z: 16.991718}
+        Time: 12.342853
+      - Position: {x: 522.5321, y: 1.1198472, z: 30.755594}
+        Time: 12.543558
+      - Position: {x: 524.1309, y: 1.1152219, z: 44.56042}
+        Time: 12.745196
+      - Position: {x: 525.6426, y: 1.1326251, z: 58.389763}
+        Time: 12.945941
+      - Position: {x: 527.1425, y: 1.1625148, z: 72.213806}
+        Time: 13.152159
+      - Position: {x: 528.64734, y: 1.204928, z: 86.02908}
+        Time: 13.358486
+      - Position: {x: 530.314, y: 1.2605389, z: 101.23873}
+        Time: 13.561669
+      - Position: {x: 531.83655, y: 1.3157645, z: 115.06199}
+        Time: 13.769391
+      - Position: {x: 533.3451, y: 1.3740555, z: 128.8739}
+        Time: 13.975759
+      - Position: {x: 534.39716, y: 1.4201674, z: 142.73961}
+        Time: 14.17976
+      - Position: {x: 534.27985, y: 1.414534, z: 158.0325}
+        Time: 14.387119
+      - Position: {x: 533.5612, y: 1.3824685, z: 171.92249}
+        Time: 14.597844
+      - Position: {x: 532.69446, y: 1.3468846, z: 185.79126}
+        Time: 14.799782
+      - Position: {x: 531.7051, y: 1.3079075, z: 201.0584}
+        Time: 15.007247
+      - Position: {x: 530.8046, y: 1.2737993, z: 214.93954}
+        Time: 15.218804
+      - Position: {x: 529.8201, y: 1.2405689, z: 230.20079}
+        Time: 15.42103
+      - Position: {x: 528.9312, y: 1.2163218, z: 244.07294}
+        Time: 15.627664
+      - Position: {x: 527.94006, y: 1.1932284, z: 257.94766}
+        Time: 15.838503
+      - Position: {x: 525.6493, y: 1.152707, z: 273.04843}
+        Time: 16.043678
+      - Position: {x: 521.45856, y: 1.0325316, z: 286.28665}
+        Time: 16.254038
+      - Position: {x: 516.0427, y: 0.85625774, z: 299.0979}
+        Time: 16.459068
+      - Position: {x: 509.69885, y: 0.6845794, z: 313.01587}
+        Time: 16.664879
+      - Position: {x: 503.8619, y: 0.56505585, z: 325.62524}
+        Time: 16.876114
+      - Position: {x: 497.56396, y: 0.48637554, z: 339.5692}
+        Time: 17.082674
+      - Position: {x: 492.0749, y: 0.48095283, z: 352.3469}
+        Time: 17.291475
+      - Position: {x: 486.04434, y: 0.5324985, z: 364.8676}
+        Time: 17.499346
+      - Position: {x: 477.60974, y: 0.5907665, z: 377.60312}
+        Time: 17.706083
+      - Position: {x: 468.1639, y: 0.635069, z: 387.77484}
+        Time: 17.90684
+      - Position: {x: 457.08322, y: 0.6276325, z: 396.13654}
+        Time: 18.114578
+      - Position: {x: 444.77823, y: 0.5550871, z: 402.57928}
+        Time: 18.31995
+      - Position: {x: 430.6272, y: 0.4624594, z: 408.39032}
+        Time: 18.522768
+      - Position: {x: 417.6924, y: 0.42668527, z: 413.49188}
+        Time: 18.72376
+      - Position: {x: 404.9624, y: 0.4569644, z: 419.06735}
+        Time: 18.92636
+      - Position: {x: 392.25394, y: 0.51660657, z: 424.71625}
+        Time: 19.137705
+      - Position: {x: 379.06973, y: 0.5645661, z: 429.10303}
+        Time: 19.3389
+      - Position: {x: 364.0583, y: 0.52994764, z: 431.99457}
+        Time: 19.541645
+      - Position: {x: 350.2819, y: 0.48072338, z: 433.87476}
+        Time: 19.74546
+      - Position: {x: 336.47778, y: 0.44688138, z: 435.59015}
+        Time: 19.947504
+      - Position: {x: 322.68005, y: 0.4266794, z: 437.2719}
+        Time: 20.15429
+      - Position: {x: 307.53027, y: 0.4312826, z: 439.34726}
+        Time: 20.360521
+      - Position: {x: 293.84018, y: 0.46430573, z: 441.81467}
+        Time: 20.567142
+      - Position: {x: 280.2002, y: 0.51339877, z: 444.52313}
+        Time: 20.775568
+      - Position: {x: 266.4925, y: 0.5558386, z: 446.81995}
+        Time: 20.979767
+      - Position: {x: 251.30649, y: 0.5799611, z: 448.6142}
+        Time: 21.187532
+      - Position: {x: 237.46448, y: 0.5976969, z: 449.99457}
+        Time: 21.395466
+      - Position: {x: 222.23897, y: 0.6203556, z: 451.44864}
+        Time: 21.600037
+      - Position: {x: 208.40399, y: 0.64620304, z: 452.76083}
+        Time: 21.803526
+      - Position: {x: 194.55458, y: 0.6757158, z: 454.07468}
+        Time: 22.007883
+      - Position: {x: 180.71164, y: 0.709125, z: 455.38834}
+        Time: 22.21609
+      - Position: {x: 165.4943, y: 0.7491744, z: 456.8325}
+        Time: 22.422792
+      - Position: {x: 151.64459, y: 0.7895854, z: 458.1488}
+        Time: 22.627747
+      - Position: {x: 137.79456, y: 0.8289827, z: 459.3991}
+        Time: 22.837618
+      - Position: {x: 123.91463, y: 0.85278773, z: 460.1538}
+        Time: 23.038872
+      - Position: {x: 108.62531, y: 0.8600534, z: 460.4947}
+        Time: 23.243204
+      - Position: {x: 94.71541, y: 0.86322093, z: 460.6672}
+        Time: 23.44841
+      - Position: {x: 80.81321, y: 0.8667481, z: 460.81085}
+        Time: 23.654022
+      - Position: {x: 65.524734, y: 0.8709378, z: 460.9612}
+        Time: 23.862045
+      - Position: {x: 51.615723, y: 0.86567223, z: 460.83893}
+        Time: 24.073326
+      - Position: {x: 36.339245, y: 0.83219534, z: 460.02084}
+        Time: 24.280811
+      - Position: {x: 22.477867, y: 0.7888364, z: 458.98785}
+        Time: 24.488844
+      - Position: {x: 8.616915, y: 0.7450515, z: 457.88513}
+        Time: 24.695318
+      - Position: {x: -6.6364985, y: 0.69716394, z: 456.69293}
+        Time: 24.900675
+      - Position: {x: -20.5248, y: 0.6998669, z: 456.26273}
+        Time: 25.105888
+      - Position: {x: -34.308937, y: 0.8038024, z: 457.85162}
+        Time: 25.312464
+      - Position: {x: -47.73898, y: 0.92072254, z: 461.46112}
+        Time: 25.51352
+      - Position: {x: -61.06672, y: 1.0634228, z: 465.43216}
+        Time: 25.717934
+      - Position: {x: -76.13249, y: 1.194239, z: 467.86865}
+        Time: 25.92055
+      - Position: {x: -90.01433, y: 1.1894215, z: 467.40308}
+        Time: 26.127947
+      - Position: {x: -103.77613, y: 1.1018392, z: 465.49136}
+        Time: 26.33632
+      - Position: {x: -118.88994, y: 1.011402, z: 463.12253}
+        Time: 26.543468
+      - Position: {x: -132.7187, y: 0.96721315, z: 461.63522}
+        Time: 26.753365
+      - Position: {x: -146.58824, y: 0.9501235, z: 460.60492}
+        Time: 26.95816
+      - Position: {x: -161.8429, y: 0.9361131, z: 459.62595}
+        Time: 27.161877
+      - Position: {x: -175.72641, y: 0.9316559, z: 458.76828}
+        Time: 27.367355
+      - Position: {x: -189.60324, y: 0.9272284, z: 457.83173}
+        Time: 27.573421
+      - Position: {x: -203.4432, y: 0.91665035, z: 456.59583}
+        Time: 27.77838
+      - Position: {x: -218.6624, y: 0.90492654, z: 455.03607}
+        Time: 27.986605
+      - Position: {x: -232.4949, y: 0.89690304, z: 453.5687}
+        Time: 28.186941
+      - Position: {x: -246.3161, y: 0.89805007, z: 452.0937}
+        Time: 28.39819
+      - Position: {x: -261.52332, y: 0.90907586, z: 450.4705}
+        Time: 28.604149
+      - Position: {x: -275.35596, y: 0.9298308, z: 448.99713}
+        Time: 28.814636
+      - Position: {x: -289.1799, y: 0.9601313, z: 447.52585}
+        Time: 29.018555
+      - Position: {x: -304.34784, y: 0.99439156, z: 445.56744}
+        Time: 29.220806
+      - Position: {x: -317.98444, y: 1.0043899, z: 442.8746}
+        Time: 29.424799
+      - Position: {x: -331.52267, y: 1.009704, z: 439.6744}
+        Time: 29.625208
+      - Position: {x: -344.92255, y: 1.0151422, z: 435.95624}
+        Time: 29.83427
+      - Position: {x: -358.11444, y: 1.009539, z: 431.56696}
+        Time: 30.036442
+      - Position: {x: -371.15982, y: 1.0101321, z: 426.76834}
+        Time: 30.239342
+      - Position: {x: -385.361, y: 1.0335104, z: 421.08163}
+        Time: 30.445223
+      - Position: {x: -398.0123, y: 1.061671, z: 415.30524}
+        Time: 30.653526
+      - Position: {x: -410.45154, y: 1.1194658, z: 409.09766}
+        Time: 30.859722
+      - Position: {x: -422.28336, y: 1.1918083, z: 401.81277}
+        Time: 31.059937
+      - Position: {x: -434.14618, y: 1.2362152, z: 392.1747}
+        Time: 31.267673
+      - Position: {x: -443.76776, y: 1.2749236, z: 382.14822}
+        Time: 31.467688
+      - Position: {x: -452.53156, y: 1.3080096, z: 371.3531}
+        Time: 31.67306
+      - Position: {x: -460.81424, y: 1.389417, z: 360.193}
+        Time: 31.87435
+      - Position: {x: -467.86505, y: 1.4947809, z: 348.231}
+        Time: 32.07438
+      - Position: {x: -472.43726, y: 1.543614, z: 335.14005}
+        Time: 32.27643
+      - Position: {x: -474.0476, y: 1.4753329, z: 321.35175}
+        Time: 32.478493
+      - Position: {x: -473.32712, y: 1.2862324, z: 306.0807}
+        Time: 32.68475
+      - Position: {x: -471.83325, y: 1.1261269, z: 292.27054}
+        Time: 32.889557
+      - Position: {x: -470.4732, y: 1.0112494, z: 278.4281}
+        Time: 33.098095
+      - Position: {x: -469.84262, y: 0.95124435, z: 264.53494}
+        Time: 33.299133
+      - Position: {x: -469.39777, y: 0.9046337, z: 249.24956}
+        Time: 33.500687
+      - Position: {x: -468.53226, y: 0.8552043, z: 235.37744}
+        Time: 33.704174
+      - Position: {x: -467.50302, y: 0.8070431, z: 221.50539}
+        Time: 33.91144
+      - Position: {x: -467.04193, y: 0.78766173, z: 207.60786}
+        Time: 34.114754
+      - Position: {x: -467.06454, y: 0.7847374, z: 193.711}
+        Time: 34.31791
+      ID: 1
+  _tracePathController: {fileID: 2562731225160452444}
+  LastID: 1
+  DrawPathIndex: 1
 --- !u!1001 &465279415767527441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,6 +391,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (7)
@@ -102,6 +445,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &7410122766318950883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 465279415767527441}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &568944120266003977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,6 +463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (6)
@@ -159,6 +517,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &7441707887688597499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 568944120266003977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &604730087959982982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,6 +535,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (2)
@@ -216,6 +589,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &7550113816189491828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 604730087959982982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1065544782595765492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -223,6 +607,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (4)
@@ -273,6 +661,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &7956340026311318790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 1065544782595765492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1618732392595867331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,6 +727,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrackPath
       objectReference: {fileID: 0}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 6756233700188097423}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 7550113816189491828}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 368604340396043415}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 7956340026311318790}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 55036369955701421}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 7441707887688597499}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[6]
+      value: 
+      objectReference: {fileID: 7410122766318950883}
+    - target: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+      propertyPath: _tracePoints.Array.data[7]
+      value: 
+      objectReference: {fileID: 6003884949509918062}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
 --- !u!4 &2562731225160452435 stripped
@@ -335,6 +770,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3883865329182822288, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
   m_PrefabInstance: {fileID: 1618732392595867331}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2562731225160452444 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3883865329182822303, guid: 4bbd127c4719c6a4a8db57a99c6a5720, type: 3}
+  m_PrefabInstance: {fileID: 1618732392595867331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26a0b1a980fa5c44bf68967efca36ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3742807682629526684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,6 +788,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (8)
@@ -352,7 +802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6963420774244166125, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -486
+      value: -474
       objectReference: {fileID: 0}
     - target: {fileID: 6963420774244166125, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_LocalPosition.y
@@ -392,6 +842,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &6003884949509918062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 3742807682629526684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4423093995624342141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,6 +860,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (1)
@@ -449,6 +914,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &6756233700188097423 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 4423093995624342141}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6944705680545278815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -456,6 +932,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (5)
@@ -506,6 +986,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &55036369955701421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 6944705680545278815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7331440167932069221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -513,6 +1004,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2562731225160452435}
     m_Modifications:
+    - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6963420774244166124, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
       propertyPath: m_Name
       value: TracePoint (3)
@@ -563,3 +1058,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+--- !u!114 &368604340396043415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963420774244166130, guid: beeb92487b7b1fa498ddba6c9c6c8c32, type: 3}
+  m_PrefabInstance: {fileID: 7331440167932069221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f024562f2e18438202cfa8e62c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

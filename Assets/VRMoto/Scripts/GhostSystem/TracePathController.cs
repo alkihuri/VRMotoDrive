@@ -1,105 +1,120 @@
-using Sirenix.OdinInspector;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
+using Sirenix.OdinInspector;
 using UnityEngine.Events;
 
 public class TracePathController : MonoBehaviour
 {
     [SerializeField] List<TracePointController> _tracePoints;
     [SerializeField] GameObject _player;
+    [SerializeField] float distanceThreshold = 25f;
 
-    public TracePointController CurrentPoint;
+    private Coroutine recordingCoroutine;
+    private bool recordingInProgress;
+    private LapPoints lapPointsRecorded;
 
-    [SerializeField] LapPoints _lapPoints;
-    public int CurrentPointIndex
-    {
-        set
-        {
-            SetCurrentPoint(value);
-            if (value == 0)
-            {
-                StartCoroutine(RecordPlayerPosition());
-            }
-        }
-        get
-        {
-            return _tracePoints.IndexOf(CurrentPoint);
-        }
-    }
+    public UnityEvent<LapPoints> OnPathComplete = new UnityEvent<LapPoints>();
+    public UnityEvent OnPathFinish = new UnityEvent();
+    public UnityEvent OnPathStart = new UnityEvent();
 
-    public bool RecordingInProgress;
+    public bool FirstLap { get; private set; }
 
-    public UnityEvent<LapPoints> OnLapFinished = new UnityEvent<LapPoints>();
     private void Awake()
     {
-        CashingAndSettings();
-        StartCoroutine(CurrentPointSystem());
+        FirstLap = true;
+        CacheAndSettings();
+        recordingCoroutine = StartCoroutine(CurrentPointSystem());
     }
 
-    [Button("Innit points")]
-    private void CashingAndSettings()
+    private void Start()
     {
-        _lapPoints = new LapPoints();
+
+    }
+
+    private void CacheAndSettings()
+    {
         _tracePoints = GetComponentsInChildren<TracePointController>().ToList();
+
+        OnPathStart.AddListener(() =>
+        {
+            recordingInProgress = true;
+            StartRecording();
+            Debug.Log("Lap started");
+        });
+
+        OnPathFinish.AddListener(() =>
+        {
+            recordingInProgress = false;
+            OnPathComplete.Invoke(lapPointsRecorded);
+            Debug.Log("Lap finished");
+        });
     }
 
-
-
-
-    IEnumerator CurrentPointSystem()
+    private IEnumerator CurrentPointSystem()
     {
-        CurrentPointIndex = 0;
+        int currentPointIndex = 0;
         while (true)
         {
-            yield return new WaitForSeconds(1 / 10);
-            var distance = Vector3.Distance(_player.transform.position, CurrentPoint.Position);
-           
-            if (distance < 25)
+            yield return new WaitForFixedUpdate();
+            if (Vector3.Distance(_player.transform.position, _tracePoints[currentPointIndex].Position) < distanceThreshold)
             {
-                CurrentPointIndex = CurrentPointIndex + 1;
+                currentPointIndex = (currentPointIndex + 1) % _tracePoints.Count;
+                SetCurrentPoint(currentPointIndex);
             }
-
         }
     }
 
-
-    IEnumerator RecordPlayerPosition()
+    private void StartRecording()
     {
-        RecordingInProgress = true;
-        LapPoints lapPoints = new LapPoints();
-        while (!_tracePoints.Last().IsCurrent)
-        {
-            yield return new WaitForSeconds(.2f);
-
-            var point = new GhostPoint();
-            point.Position = _player.transform.position;
-            point.Time = Time.time; 
-            lapPoints.Points.Add(point); 
-
-            Debug.DrawRay(_player.transform.position, Vector3.up * 10, Color.red, 1);   
-        }
-        OnLapFinished.Invoke(lapPoints);
-        RecordingInProgress = false;
+        lapPointsRecorded = new LapPoints();
+        StartCoroutine(RecordPlayerPosition());
     }
 
-    public void SetCurrentPoint(int currentPoint)
+    private IEnumerator RecordPlayerPosition()
+    {
+        while (recordingInProgress)
+        {
+            yield return null; // Wait for next frame
+            var point = new GhostPoint
+            {
+                Position = _player.transform.position,
+                Time = Time.time
+            };
+            lapPointsRecorded.Points.Add(point);
+            Debug.DrawRay(_player.transform.position, Vector3.up * 10, Color.red, 1);
+        }
+    }
+
+    public void SetCurrentPoint(int currentPointIndex)
     {
 
-        if (currentPoint >= _tracePoints.Count)
+        if (currentPointIndex >= _tracePoints.Count)
         {
-            currentPoint = 0;
+            currentPointIndex = 0;
         }
 
 
 
+        if (currentPointIndex - 1 == 0)
+            OnPathStart.Invoke();
 
-        var point = _tracePoints[currentPoint];
-        _tracePoints.ForEach(p => p.IsCurrent = false);
-        point.IsCurrent = true;
-        CurrentPoint = point;
+        _tracePoints[(currentPointIndex - 1 + _tracePoints.Count) % _tracePoints.Count].IsCurrentPassed = true;
+
+
+        FirstLap = !_tracePoints.All(p => p.IsCurrentPassed);
+
+
+        // If the player has passed all the points, the lap is finished _tracePoints.All(p => p.IsCurrentPassed)
+        if (_tracePoints.First().IsCurrentPassed && !FirstLap)
+        {
+            OnPathFinish.Invoke();
+            _tracePoints.ForEach(p => p.IsCurrentPassed = false);
+        }
+
+        _tracePoints.ForEach(p => p.IsCurrenTarget = false);
+        _tracePoints[currentPointIndex].IsCurrenTarget = true;
     }
 
     private void OnDrawGizmos()
