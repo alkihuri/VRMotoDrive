@@ -9,7 +9,8 @@ public class TracePathController : MonoBehaviour
 {
     [SerializeField] List<TracePointController> _tracePoints;
     [SerializeField] GameObject _player;
-    [SerializeField] float distanceThreshold = 25f;
+    [SerializeField] GameObject _playerChasis;
+    [SerializeField] float distanceThreshold = 50;
 
     private Coroutine recordingCoroutine;
     private bool recordingInProgress;
@@ -76,10 +77,11 @@ public class TracePathController : MonoBehaviour
     {
         while (recordingInProgress)
         {
-            yield return null; // Wait for next frame
+            yield return new WaitForFixedUpdate();
             var point = new GhostPoint
             {
                 Position = _player.transform.position,
+                Rotation = _playerChasis.transform.eulerAngles,
                 Time = Time.time
             };
             lapPointsRecorded.Points.Add(point);

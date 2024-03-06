@@ -420,6 +420,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280859179}
   m_CullTransparentMesh: 1
+--- !u!1 &293815091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4141587240870502194, guid: c416facee743bdb489b9afe60fb6b9f4, type: 3}
+  m_PrefabInstance: {fileID: 5786552749589107754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &296965012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -473,6 +478,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 416668, guid: a15701eb7154ce44f89e87cf69e30f74, type: 3}
   m_PrefabInstance: {fileID: 296965012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &318468552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7684322049382342794, guid: c416facee743bdb489b9afe60fb6b9f4, type: 3}
+  m_PrefabInstance: {fileID: 5786552749589107754}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &361299617
 PrefabInstance:
@@ -2800,6 +2810,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2562731225160452444, guid: 89f40334f16f7dc4b98d8d68460c7fb8, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 318468552}
+    - target: {fileID: 2562731225160452444, guid: 89f40334f16f7dc4b98d8d68460c7fb8, type: 3}
+      propertyPath: _playerChasis
+      value: 
+      objectReference: {fileID: 293815091}
     - target: {fileID: 3395062825292111045, guid: 89f40334f16f7dc4b98d8d68460c7fb8, type: 3}
       propertyPath: m_Name
       value: GhostSystem

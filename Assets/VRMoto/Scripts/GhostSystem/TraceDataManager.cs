@@ -1,22 +1,21 @@
-using Sirenix.OdinInspector;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Sirenix.OdinInspector;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections;
 
-public class TraceDataManager : MonoBehaviour
+public class TraceDataManager : MonoSinglethon<TraceDataManager>
 {
-
     const string DATA_PATH = "DataLapInfo.json";
 
-    public LapData _lapData;
-
     [SerializeField] TracePathController _tracePathController;
-
-    public int LastID;
-
-    [SerializeField, Range(0, 10)] public int DrawPathIndex;
+    [SerializeField, Range(0, 10)] int drawPathIndex;
+    public int LastID { get; private set; }
+    public LapData LapData;
 
     private void Awake()
     {
@@ -26,81 +25,90 @@ public class TraceDataManager : MonoBehaviour
 
     private void OnLapFinished(LapPoints points)
     {
-        points.ID = LastID + 1;
-        _lapData.LapPoints.Add(points);
+
+
+        if (LapData.LapPoints != null)
+        {
+            points.ID = ++LastID;
+        }
+        else
+        {
+            points.ID = 0;
+        }
+
+        LapData.LapPoints.Clear();
+
+        LapData.LapPoints.Add(points);
+
         SaveData();
     }
 
     [Button("Save data")]
     public void SaveData()
     {
-        string json = JsonUtility.ToJson(_lapData);
-        Debug.Log(Application.streamingAssetsPath + "/" + DATA_PATH);
-        Debug.Log(json);
-        System.IO.File.WriteAllText(Application.streamingAssetsPath + "/" + DATA_PATH, json);
+        // call the async method
+        StartCoroutine(SaveDataAsync());
     }
+
+
+
+    private IEnumerator SaveDataAsync()
+    {
+        string json = JsonUtility.ToJson(LapData);
+        string filePath = GetFilePath();
+        File.WriteAllText(filePath, json);
+        Debug.Log("Data saved to: " + filePath);
+        yield return new WaitForSeconds(1);
+        LoadData();
+    }
+
 
     [Button("Load data")]
     public void LoadData()
     {
-        if (!System.IO.File.Exists(Application.streamingAssetsPath + "/" + DATA_PATH))
+        string filePath = GetFilePath();
+        if (!File.Exists(filePath))
         {
-            Debug.LogWarning("File not found");
-            _lapData = new LapData();
+            Debug.LogWarning("File not found. Creating new file...");
+
+            File.Create(filePath).Dispose();
+
+            LapData = new LapData();
             return;
         }
 
-        string json = System.IO.File.ReadAllText(Application.streamingAssetsPath + "/" + DATA_PATH);
-        var data = JsonUtility.FromJson<LapData>(json);
+        string json = File.ReadAllText(filePath);
+        LapData = JsonUtility.FromJson<LapData>(json) ?? new LapData();
+        LastID = LapData.LapPoints.Count;
+    }
 
-        if (data != null)
-        {
-            _lapData.LapPoints.AddRange(data.LapPoints);
-            LastID = _lapData.LapPoints.Count;
-        }
-        else
-        {
-            _lapData = new LapData();
-            _lapData.LapPoints = new List<LapPoints>();
-        }
+
+
+
+    private string GetFilePath()
+    {
+        return Path.Combine(Application.streamingAssetsPath, DATA_PATH);
     }
 
     private void OnDrawGizmos()
     {
-        if (_lapData != null)
+        if (LapData == null) return;
+
+        var selectedPoints = LapData.LapPoints[0];
+        if (selectedPoints == null || !selectedPoints.Points.Any()) return;
+
+        DrawPath(selectedPoints.Points);
+    }
+
+    private void DrawPath(List<GhostPoint> points)
+    {
+        Gizmos.color = Color.blue;
+
+        for (int i = 0; i < points.Count - 1; i++)
         {
-            if (_lapData.LapPoints.Count > 0)
-                if (_lapData.LapPoints.Where(x => x.ID == DrawPathIndex).ToList().Count > 0)
-                {
-                    var points = _lapData.LapPoints.Where(x => x.ID == DrawPathIndex).FirstOrDefault();
-
-                    if (points.Points.Count > 0)
-                    {
-                        // draw line between points
-                        for (int i = 0; i < points.Points.Count - 1; i++)
-                        {
-                            Gizmos.color = Color.blue;
-                            Gizmos.DrawLine(points.Points[i].Position, points.Points[i + 1].Position);
-                        }
-                        // draw betwean first and last point    
-                        Gizmos.color = Color.blue;
-                        Gizmos.DrawLine(points.Points.First().Position, points.Points.Last().Position);
-                    }
-
-                    // draw line betwean last and first point
-                    if (points.Points.Count > 0)
-                    {
-                        Gizmos.color = Color.blue;
-                        Gizmos.DrawLine(points.Points.Last().Position, points.Points.First().Position);
-                    }
-                }
+            Gizmos.DrawLine(points[i].Position, points[i + 1].Position);
         }
 
+        Gizmos.DrawLine(points.First().Position, points.Last().Position);
     }
-}
-
-[System.Serializable]
-public class LapData
-{
-    public List<LapPoints> LapPoints;
 }

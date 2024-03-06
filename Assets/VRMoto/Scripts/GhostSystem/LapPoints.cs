@@ -22,4 +22,5 @@ public class GhostPoint
 {
     public Vector3 Position;
     public float Time;
+    public Vector3 Rotation;
 }
