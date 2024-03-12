@@ -32,7 +32,7 @@
 
 - Android 
 
-1. [SinglePlayer Android v0.4 (глючит)](https://disk.yandex.com.tr/d/RhUZD0f-d1cAEg)
+1. [SinglePlayer Android v0.4.2 Ghost Mode](https://disk.yandex.com.tr/d/RhUZD0f-d1cAEg)
 
 ---
 

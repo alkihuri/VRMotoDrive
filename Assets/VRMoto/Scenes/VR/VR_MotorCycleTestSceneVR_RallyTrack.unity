@@ -2625,6 +2625,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5501620586871248456, guid: c416facee743bdb489b9afe60fb6b9f4, type: 3}
+      propertyPath: m_text
+      value: 'MotoVR MVP TEST v0.4.2
+
+        SINGLEPLAYER / GHOST'
+      objectReference: {fileID: 0}
     - target: {fileID: 7684322049382342794, guid: c416facee743bdb489b9afe60fb6b9f4, type: 3}
       propertyPath: m_Name
       value: MotoVRSinglePlayer

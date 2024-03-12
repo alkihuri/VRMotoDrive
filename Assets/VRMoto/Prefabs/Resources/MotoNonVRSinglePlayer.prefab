@@ -1458,12 +1458,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8778311842597867249}
     - target: {fileID: 4382673182263455351, guid: 83f0035d175810f46bf2cc266d71da9c, type: 3}
-      propertyPath: m_text
-      value: 'MotoVR MVP TEST v0.4
-
-        SINGLEPLAYER'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4382673182263455351, guid: 83f0035d175810f46bf2cc266d71da9c, type: 3}
       propertyPath: m_fontSize
       value: 22.05
       objectReference: {fileID: 0}
