@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 public class TracePathController : MonoBehaviour
 {
@@ -23,11 +25,15 @@ public class TracePathController : MonoBehaviour
     public UnityEvent OnPathFinish = new UnityEvent();
     public UnityEvent OnPathStart = new UnityEvent();
 
-    public bool FirstLap { get; private set; }
+
+    [Header("Debug")]
+
+    [SerializeField] float _currentPointIndex;
+    [SerializeField] float _passedPointIndex;
+
 
     private void Awake()
     {
-        FirstLap = true;
         CacheAndSettings();
     }
 
@@ -78,6 +84,7 @@ public class TracePathController : MonoBehaviour
     private IEnumerator RecordPlayerPosition()
     {
         lapPointsRecorded?.Points?.Clear();
+        Debug.Log("Recording started...");
         while (recordingInProgress)
         {
             yield return new WaitForFixedUpdate();
@@ -89,6 +96,7 @@ public class TracePathController : MonoBehaviour
             lapPointsRecorded.Points.Add(point);
             Debug.DrawRay(_player.transform.position, Vector3.up * 10, Color.red, 1);
         }
+        Debug.Log("Recording finished");
         OnPathRecordingComplete.Invoke(lapPointsRecorded);
     }
 
@@ -100,26 +108,26 @@ public class TracePathController : MonoBehaviour
             currentPointIndex = 0;
         }
 
-
-
-        if (currentPointIndex - 1 == 0)
-            OnPathStart.Invoke();
+        _currentPointIndex = currentPointIndex;
 
         _tracePoints[(currentPointIndex - 1 + _tracePoints.Count) % _tracePoints.Count].IsCurrentPassed = true;
 
 
-        FirstLap = !_tracePoints.All(p => p.IsCurrentPassed);
-
-
-        // If the player has passed all the points, the lap is finished _tracePoints.All(p => p.IsCurrentPassed)
-        if (_tracePoints.First().IsCurrentPassed && !FirstLap)
+        if (_tracePoints.First().IsCurrentPassed)
         {
-            OnPathFinish.Invoke();
             _tracePoints.ForEach(p => p.IsCurrentPassed = false);
         }
 
         _tracePoints.ForEach(p => p.IsCurrenTarget = false);
         _tracePoints[currentPointIndex].IsCurrenTarget = true;
+
+        _passedPointIndex = currentPointIndex > 0 ? --currentPointIndex : _tracePoints.Count - 1;
+
+        if (_passedPointIndex == 0)
+            OnPathStart.Invoke();
+        if (_passedPointIndex == _tracePoints.Count - 1)
+            OnPathFinish.Invoke();
+
     }
 
     private void OnDrawGizmos()

@@ -1,11 +1,10 @@
-
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Sirenix.OdinInspector;
+using System;
 using System.Threading.Tasks;
-using System.Threading;
 using System.Collections;
 
 public class TraceDataManager : MonoSinglethon<TraceDataManager>
@@ -15,9 +14,13 @@ public class TraceDataManager : MonoSinglethon<TraceDataManager>
     [SerializeField] TracePathController _tracePathController;
     [SerializeField, Range(0, 10)] int drawPathIndex;
     public int LastID { get; private set; }
-    public LapData LapData;
+    public bool IsReading { get; private set; }
+    public bool IsWriting { get; private set; }
 
-    private void Awake()
+    public LapData LapData;
+     
+
+    private void Start()
     {
         _tracePathController.OnPathRecordingComplete.AddListener(OnLapFinished);
         LoadData();
@@ -25,78 +28,72 @@ public class TraceDataManager : MonoSinglethon<TraceDataManager>
 
     private void OnLapFinished(LapPoints points)
     {
+        
 
-
-        if (LapData.LapPoints != null)
+        if (LapData.LapPoints != null && LapData.LapPoints.Count > 0 && LapData.LapPoints[0].Points != null && LapData.LapPoints[0].Points.Count > 0)
         {
-            points.ID = ++LastID;
+            LapData.LapPoints[0].Points.Clear();
         }
-        else
-        {
-            points.ID = 0;
-        }
-
-
-        if (LapData.LapPoints != null 
-            && LapData.LapPoints.Count > 0 
-                && LapData.LapPoints[0].Points != null 
-                    && LapData.LapPoints[0].Points.Count > 0)
-                        LapData?.LapPoints[0]?.Points?.Clear();
-
 
         foreach (var point in points.Points)
         {
-            var newPoint = new GhostPoint(point); 
+            var newPoint = new GhostPoint(point);
             LapData.LapPoints[0].Points.Add(newPoint);
         }
 
 
-        SaveData();
+        GhostsManager.Instance.ReadyGhost.InnitPathWay(LapData.LapPoints[0].Points);
+
+        Task.Run(() => SaveData()); 
+       
     }
 
     [Button("Save data")]
     public void SaveData()
     {
-        // call the async method
-        StartCoroutine(SaveDataAsync());
+        StartCoroutine(SaveDataRoutine());
     }
 
-
-
-    private IEnumerator SaveDataAsync()
+    IEnumerator SaveDataRoutine()
     {
+        yield return new WaitWhile(() => IsReading);
+
         string json = JsonUtility.ToJson(LapData);
         string filePath = GetFilePath();
-        File.WriteAllText(filePath, json);
+        var task = File.WriteAllTextAsync(filePath, json);
+        yield return task;
         Debug.Log("<color=green>Path points data saved to:</color> " + filePath);
-        Time.timeScale = 0.1f;
-        yield return new WaitForSecondsRealtime(1); 
-        LoadData();
-        yield return new WaitForSecondsRealtime(1);
-        Time.timeScale = 1;
 
+        LoadData();
     }
 
 
     [Button("Load data")]
     public void LoadData()
     {
+        StartCoroutine(LoadDataRoutine());
+    }
+
+    IEnumerator LoadDataRoutine()
+    {
+
+        yield return new WaitWhile(() => IsWriting);
+
+        LapData = new LapData();
         string filePath = GetFilePath();
         if (!File.Exists(filePath))
         {
             Debug.LogWarning("File not found. Creating new file...");
             File.Create(filePath).Dispose();
-            LapData = new LapData();
-            return;
+            yield break;
         }
 
-        string json = File.ReadAllText(filePath);
-        LapData = JsonUtility.FromJson<LapData>(json);
+        var json = File.ReadAllTextAsync(filePath);
+
+        yield return json;
+        LapData = JsonUtility.FromJson<LapData>(json.Result);
         LastID = LapData.LapPoints.Count;
     }
-
-
-
 
     private string GetFilePath()
     {

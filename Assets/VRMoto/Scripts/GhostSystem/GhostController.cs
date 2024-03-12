@@ -18,25 +18,25 @@ public class GhostController : MonoBehaviour
         _startPostion = transform.position;
     }
     public void InnitPathWay(List<GhostPoint> points)
-    {
-
-
-
+    {  
         if (IsPlaying)
         {
             ResetPosition();
-            IsPlaying = false;
-            points.Clear();
+            IsPlaying = false; 
         }
+        _points.Clear();
         foreach(var point in points)
         {
-            GhostPoint newPoint = new GhostPoint(point); 
+            GhostPoint newPoint = new GhostPoint(point);
+            _points.Add(newPoint);
         }
+        Debug.Log("Points innitialized for ghost...");
     }
 
 
     public void PlayGhost()
-    {
+    { 
+
         if (_points.Count > 0)
         {
             StartCoroutine(PlayGhostRoutine());
