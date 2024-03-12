@@ -6765,6 +6765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2900555161551644796, guid: 28cdd72a8fb62d84d9c72b4e4fbcce6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28cdd72a8fb62d84d9c72b4e4fbcce6c, type: 3}
 --- !u!4 &851305630801173476 stripped

@@ -173,9 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcef19d7b7fe2b4d8483d17c0a8105b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   _forwardBrake: 0
   _rearBrake: 0
 --- !u!114 &2866354297394539565
@@ -190,9 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a791ee1ec0fa140985a9ebb055c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   _forwardWheel: {fileID: 0}
   _rearWheel: {fileID: 0}
   _enginePowerCurve:
@@ -283,4 +277,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b42fca03460af441bf4bbad9af87606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 9e6003c799a374e44b1868e4a24c9231, type: 2}
+  _settingsPreset: {fileID: 11400000, guid: 838a743ecc9ab0b4cacacbda148d4c79, type: 2}

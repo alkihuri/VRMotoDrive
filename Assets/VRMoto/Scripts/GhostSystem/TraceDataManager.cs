@@ -19,7 +19,7 @@ public class TraceDataManager : MonoSinglethon<TraceDataManager>
 
     private void Awake()
     {
-        _tracePathController.OnPathComplete.AddListener(OnLapFinished);
+        _tracePathController.OnPathRecordingComplete.AddListener(OnLapFinished);
         LoadData();
     }
 
@@ -36,9 +36,20 @@ public class TraceDataManager : MonoSinglethon<TraceDataManager>
             points.ID = 0;
         }
 
-        LapData.LapPoints.Clear();
 
-        LapData.LapPoints.Add(points);
+        if (LapData.LapPoints != null 
+            && LapData.LapPoints.Count > 0 
+                && LapData.LapPoints[0].Points != null 
+                    && LapData.LapPoints[0].Points.Count > 0)
+                        LapData?.LapPoints[0]?.Points?.Clear();
+
+
+        foreach (var point in points.Points)
+        {
+            var newPoint = new GhostPoint(point); 
+            LapData.LapPoints[0].Points.Add(newPoint);
+        }
+
 
         SaveData();
     }
@@ -57,9 +68,13 @@ public class TraceDataManager : MonoSinglethon<TraceDataManager>
         string json = JsonUtility.ToJson(LapData);
         string filePath = GetFilePath();
         File.WriteAllText(filePath, json);
-        Debug.Log("Data saved to: " + filePath);
-        yield return new WaitForSeconds(1);
+        Debug.Log("<color=green>Path points data saved to:</color> " + filePath);
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(1); 
         LoadData();
+        yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1;
+
     }
 
 
@@ -70,15 +85,13 @@ public class TraceDataManager : MonoSinglethon<TraceDataManager>
         if (!File.Exists(filePath))
         {
             Debug.LogWarning("File not found. Creating new file...");
-
             File.Create(filePath).Dispose();
-
             LapData = new LapData();
             return;
         }
 
         string json = File.ReadAllText(filePath);
-        LapData = JsonUtility.FromJson<LapData>(json) ?? new LapData();
+        LapData = JsonUtility.FromJson<LapData>(json);
         LastID = LapData.LapPoints.Count;
     }
 
@@ -87,12 +100,15 @@ public class TraceDataManager : MonoSinglethon<TraceDataManager>
 
     private string GetFilePath()
     {
-        return Path.Combine(Application.streamingAssetsPath, DATA_PATH);
+        var path = Path.Combine(PathFinder.ConfigsPath, DATA_PATH);
+        return path;
     }
 
     private void OnDrawGizmos()
     {
         if (LapData == null) return;
+        if (LapData.LapPoints == null) return;
+        if (LapData.LapPoints.Count == 0) return;
 
         var selectedPoints = LapData.LapPoints[0];
         if (selectedPoints == null || !selectedPoints.Points.Any()) return;

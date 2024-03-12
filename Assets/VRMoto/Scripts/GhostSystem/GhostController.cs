@@ -17,20 +17,53 @@ public class GhostController : MonoBehaviour
         IsPlaying = false;
         _startPostion = transform.position;
     }
-    public void Innit(List<GhostPoint> points)
+    public void InnitPathWay(List<GhostPoint> points)
     {
+
+
+
         if (IsPlaying)
         {
             ResetPosition();
             IsPlaying = false;
             points.Clear();
         }
-        _points = points;
-        StartCoroutine(PlayGhost());
+        foreach(var point in points)
+        {
+            GhostPoint newPoint = new GhostPoint(point); 
+        }
     }
 
 
-    [Button("Innit from eit mode")]
+    public void PlayGhost()
+    {
+        if (_points.Count > 0)
+        {
+            StartCoroutine(PlayGhostRoutine());
+        }
+        else
+        {
+            if (
+                TraceDataManager.Instance.LapData != null &&
+                TraceDataManager.Instance.LapData.LapPoints != null &&
+                TraceDataManager.Instance.LapData.LapPoints.Count > 0 &&
+                TraceDataManager.Instance.LapData.LapPoints[0] != null &&
+                TraceDataManager.Instance.LapData.LapPoints[0].Points != null &&
+                TraceDataManager.Instance.LapData.LapPoints[0].Points.Count > 0
+                )
+            {
+                _points = TraceDataManager.Instance.LapData.LapPoints[0].Points;
+                StartCoroutine(PlayGhostRoutine());
+            }
+            else
+            {
+                Debug.LogWarning("No points to play");
+            }
+
+        }
+    }
+
+    [Button("InnitPathWay from eit mode")]
     public void InnitFromEdit()
     {
         if (IsPlaying)
@@ -40,10 +73,10 @@ public class GhostController : MonoBehaviour
             _points.Clear();
         }
         _points = TraceDataManager.Instance.LapData.LapPoints[0].Points;
-        StartCoroutine(PlayGhost());
+        StartCoroutine(PlayGhostRoutine());
     }
 
-    private IEnumerator PlayGhost()
+    private IEnumerator PlayGhostRoutine()
     {
         IsPlaying = true;
         for (int i = 0; i < _points.Count - 1; i++)
@@ -55,7 +88,6 @@ public class GhostController : MonoBehaviour
 
             if (i > 0)
                 Debug.DrawLine(_points[i - 1].Position, _points[i].Position, Color.cyan, 1);
-
 
 
             yield return new WaitForFixedUpdate();

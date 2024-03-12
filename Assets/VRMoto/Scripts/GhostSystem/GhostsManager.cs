@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,15 @@ public class GhostsManager : MonoBehaviour
 
 
     [SerializeField] List<GhostController> _ghosts = new List<GhostController>();
+
+
+    public GhostController ReadyGhost
+    {
+        get
+        {
+            return _ghosts[0];
+        }
+    }
 
     private void Awake()
     {
@@ -32,9 +42,9 @@ public class GhostsManager : MonoBehaviour
         _lineRenderer.enabled = true;
 
 
-        _tracePathControlelr.OnPathComplete.AddListener(InnitGhost);
-
         _tracePathControlelr.OnPathStart.AddListener(FirstRide);
+        _tracePathControlelr.OnPathStart.AddListener(PlayGhost);
+        _tracePathControlelr.OnPathRecordingComplete.AddListener(CreateLastRideGhostPath);
 
 
         _ghosts = GetComponentsInChildren<GhostController>(true).ToList();
@@ -42,38 +52,36 @@ public class GhostsManager : MonoBehaviour
 
     private void FirstRide()
     {
-        if (TraceDataManager.Instance.LapData == null)
-        {
-            return;
-        }
-        else
-        {
-            if (TraceDataManager.Instance.LapData.LapPoints == null)
-            {
-                return;
-            }
-            else
-            {
-                if (TraceDataManager.Instance.LapData.LapPoints.Count > 0)
-                    InnitGhost(TraceDataManager.Instance.LapData.LapPoints?.Last());
-            }
-        }
+
+        if (TraceDataManager.Instance.LapData.LapPoints.Count > 0)
+            CreateLastRideGhostPath(TraceDataManager.Instance.LapData.LapPoints[0]);
 
 
     }
-     
 
-    public void InnitGhost(LapPoints lapPoints)
+
+    public void CreateLastRideGhostPath(LapPoints lapPoints)
     {
 
-        var readyGhost = _ghosts[0];
-
-        if (readyGhost != null)
+        if (ReadyGhost != null)
         {
-            readyGhost.gameObject.SetActive(true);
-            readyGhost.Innit(lapPoints.Points);
+            ReadyGhost.gameObject.SetActive(true);
+            ReadyGhost.InnitPathWay(lapPoints.Points);
         }
 
+    }
+
+
+    [Button("PlayGhost")]
+    public void PlayGhost()
+    {
+        if (ReadyGhost != null)
+        {
+            if (!ReadyGhost.gameObject.activeInHierarchy)
+                ReadyGhost.gameObject.SetActive(true);
+
+            ReadyGhost.PlayGhost();
+        }
     }
 
 

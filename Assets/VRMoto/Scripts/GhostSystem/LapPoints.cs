@@ -23,4 +23,19 @@ public class GhostPoint
     public Vector3 Position;
     public float Time;
     public Vector3 Rotation;
+    private Vector3 eulerAngles;
+
+    public GhostPoint(GhostPoint point)
+    {
+        Position = point.Position;
+        Time = point.Time;
+        Rotation = point.Rotation;  
+    }
+
+    public GhostPoint(Vector3 position, Vector3 rotation, float time)
+    {
+        Position = position;
+        Rotation = rotation;
+        Time = time;
+    }
 }

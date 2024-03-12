@@ -14,9 +14,12 @@ public class TracePathController : MonoBehaviour
 
     private Coroutine recordingCoroutine;
     private bool recordingInProgress;
-    private LapPoints lapPointsRecorded;
 
-    public UnityEvent<LapPoints> OnPathComplete = new UnityEvent<LapPoints>();
+    [Header("POINTS")]
+    [SerializeField] private LapPoints lapPointsRecorded;
+
+    public UnityEvent<LapPoints> OnPathRecordingComplete = new UnityEvent<LapPoints>();
+
     public UnityEvent OnPathFinish = new UnityEvent();
     public UnityEvent OnPathStart = new UnityEvent();
 
@@ -26,17 +29,18 @@ public class TracePathController : MonoBehaviour
     {
         FirstLap = true;
         CacheAndSettings();
-        recordingCoroutine = StartCoroutine(CurrentPointSystem());
     }
 
     private void Start()
     {
-
+        StartCoroutine(CheckPointSystem());
     }
 
     private void CacheAndSettings()
     {
         _tracePoints = GetComponentsInChildren<TracePointController>().ToList();
+
+        lapPointsRecorded = new LapPoints();
 
         OnPathStart.AddListener(() =>
         {
@@ -48,12 +52,11 @@ public class TracePathController : MonoBehaviour
         OnPathFinish.AddListener(() =>
         {
             recordingInProgress = false;
-            OnPathComplete.Invoke(lapPointsRecorded);
             Debug.Log("Lap finished");
         });
     }
 
-    private IEnumerator CurrentPointSystem()
+    private IEnumerator CheckPointSystem()
     {
         int currentPointIndex = 0;
         while (true)
@@ -69,24 +72,24 @@ public class TracePathController : MonoBehaviour
 
     private void StartRecording()
     {
-        lapPointsRecorded = new LapPoints();
         StartCoroutine(RecordPlayerPosition());
     }
 
     private IEnumerator RecordPlayerPosition()
     {
+        lapPointsRecorded?.Points?.Clear();
         while (recordingInProgress)
         {
             yield return new WaitForFixedUpdate();
-            var point = new GhostPoint
-            {
-                Position = _player.transform.position,
-                Rotation = _playerChasis.transform.eulerAngles,
-                Time = Time.time
-            };
+            GhostPoint point = new GhostPoint(
+                _player.transform.position,
+                _playerChasis.transform.eulerAngles,
+                  Time.time
+            );
             lapPointsRecorded.Points.Add(point);
             Debug.DrawRay(_player.transform.position, Vector3.up * 10, Color.red, 1);
         }
+        OnPathRecordingComplete.Invoke(lapPointsRecorded);
     }
 
     public void SetCurrentPoint(int currentPointIndex)

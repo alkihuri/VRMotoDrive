@@ -1,94 +1,71 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
-using Mirror;
+using UnityEngine;
 
 public class SettingsLoader : MonoSinglethon<SettingsLoader>
 {
+    private const string FILE_NAME = "VehiclePhysicSetting.json";
+    private string path;
 
-    string path = Application.streamingAssetsPath + "/VehiclePhysicSetting.json";
+    [SerializeField]
+    private VehiclePhysicSetting _settingsPreset;
 
-    VehiclePhysicSetting setting;
+    private void Awake()
+    {
+        path = Path.Combine(PathFinder.ConfigsPath, FILE_NAME);
+    }
+
+    private void Start()
+    {
+        ReadFromStreamingAssets();
+    }
 
     [ContextMenu("Write to json")]
     public void WriteToStreamingAssets()
     {
-        if (File.Exists(path))
+        using (StreamWriter writer = File.CreateText(path))
         {
-            File.WriteAllText(Application.streamingAssetsPath + "/VehiclePhysicSetting.json", JsonUtility.ToJson(_settings));
+            writer.Write(JsonUtility.ToJson(_settingsPreset));
         }
-        else
-        {
-            File.Create(path);
-            WriteToStreamingAssets();
-        }
-
-
     }
 
     public void ReadFromStreamingAssets()
     {
-        _settings = UpdateVehiclePhysicsSettings(JsonUtility.FromJson<VehiclePhysicSettingFromJson>(File.ReadAllText(path)));
-    }
-
-    [SerializeField]
-    private VehiclePhysicSetting _settings;
-
-    public VehiclePhysicSetting Settings
-    {
-        get
+        if (File.Exists(path))
         {
-            SettingsInnit();
-            _settings = UpdateVehiclePhysicsSettings(JsonUtility.FromJson<VehiclePhysicSettingFromJson>(File.ReadAllText(path)));
-            return _settings;
-            WriteToStreamingAssets();
+            _settingsPreset = UpdateVehiclePhysicsSettings(JsonUtility.FromJson<VehiclePhysicSettingFromJson>(File.ReadAllText(path)));
         }
-        set => _settings = value;
-    }
-
-    private void Awake() => SettingsInnit();
-
-    private void OnEnable()
-    {
-        SettingsInnit();
-    }
-
-    private void SettingsInnit()
-    {
-
-        setting = setting == null ? new VehiclePhysicSetting() : setting;
-
-        ReadFromStreamingAssets();
-        if (_settings == null)
+        else
         {
-            Debug.LogError("There is no settingsFromJson!");
+            Debug.Log("File not found. Initializing settings from preset");
+            InitializeSettingsFromPreset();
         }
-
     }
 
+    public VehiclePhysicSetting Settings => _settingsPreset;
+
+    private void InitializeSettingsFromPreset()
+    {
+        // Initialize settings from preset here
+    }
 
     public VehiclePhysicSetting UpdateVehiclePhysicsSettings(VehiclePhysicSettingFromJson settingsFromJson)
     {
+        _settingsPreset = new VehiclePhysicSetting()
+        {
+            ACCELARATION_100_Km_H = settingsFromJson.ACCELARATION_100_Km_H,
+            MAX_SPEED_ACCELEARTION = settingsFromJson.MAX_SPEED_ACCELEARTION,
+            MAX_SPEED = settingsFromJson.MAX_SPEED,
+            MAX_STEER_ANGLE = settingsFromJson.MAX_STEER_ANGLE,
+            MIN_STEER_ANGLE = settingsFromJson.MIN_STEER_ANGLE,
+            SPEED_FOR_MAX_STEER_ANGLE = settingsFromJson.SPEED_FOR_MAX_STEER_ANGLE,
+            SPEED_FOR_MEDIAN_STEER_ANGLE = settingsFromJson.SPEED_FOR_MEDIAN_STEER_ANGLE,
+            SPEED_FOR_MIN_STEER_ANGLE = settingsFromJson.SPEED_FOR_MIN_STEER_ANGLE,
+            TIME_FOR_BURNOUT = settingsFromJson.TIME_FOR_BURNOUT,
+            WHILLIE = settingsFromJson.WHILLIE,
+            MOTO_MASS = settingsFromJson.MOTO_MASS
+        };
 
-
-
-        setting.ACCELARATION_100_Km_H = settingsFromJson.ACCELARATION_100_Km_H;
-        setting.MAX_SPEED_ACCELEARTION = settingsFromJson.MAX_SPEED_ACCELEARTION;
-        setting.MAX_SPEED = settingsFromJson.MAX_SPEED;
-        setting.MAX_STEER_ANGLE = settingsFromJson.MAX_STEER_ANGLE;
-        setting.MIN_STEER_ANGLE = settingsFromJson.MIN_STEER_ANGLE;
-        setting.SPEED_FOR_MAX_STEER_ANGLE = settingsFromJson.SPEED_FOR_MAX_STEER_ANGLE;
-        setting.SPEED_FOR_MEDIAN_STEER_ANGLE = settingsFromJson.SPEED_FOR_MEDIAN_STEER_ANGLE;
-        setting.SPEED_FOR_MIN_STEER_ANGLE = settingsFromJson.SPEED_FOR_MIN_STEER_ANGLE;
-        setting.TIME_FOR_BURNOUT = settingsFromJson.TIME_FOR_BURNOUT;
-        setting.WHILLIE = settingsFromJson.WHILLIE;
-        setting.MOTO_MASS = settingsFromJson.MOTO_MASS;
-        _settings = setting;
         WriteToStreamingAssets();
-        return setting;
+        return _settingsPreset;
     }
-
-
 }
