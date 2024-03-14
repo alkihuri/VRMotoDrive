@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   ACCELARATION_100_Km_H:
-    value: 5.13
+    value: 5
     definition: 
   MAX_SPEED_ACCELEARTION:
     value: 15
@@ -22,19 +22,19 @@ MonoBehaviour:
     value: 250
     definition: 
   MAX_STEER_ANGLE:
-    value: 45
+    value: 40
     definition: 
   MIN_STEER_ANGLE:
-    value: 5
+    value: 15
     definition: 
   SPEED_FOR_MAX_STEER_ANGLE:
-    value: 30
-    definition: 
-  SPEED_FOR_MEDIAN_STEER_ANGLE:
     value: 50
     definition: 
-  SPEED_FOR_MIN_STEER_ANGLE:
+  SPEED_FOR_MEDIAN_STEER_ANGLE:
     value: 80
+    definition: 
+  SPEED_FOR_MIN_STEER_ANGLE:
+    value: 100
     definition: 
   TIME_FOR_BURNOUT:
     value: 5
