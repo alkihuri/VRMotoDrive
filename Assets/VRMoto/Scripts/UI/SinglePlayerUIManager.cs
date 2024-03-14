@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 public class SinglePlayerUIManager : MonoBehaviour
 {
     public const string GAME_SCENE_NAME = "VR_MotorCycleTestSceneVR_RallyTrack";
+    public const string GAME_SCENE_2_NAME = "VR_MotorCycleTestSceneVR_RallyTrack_2.0";
     public const string SELECT_GAME_SCENE_NAME = "Scene_select_singleplayer";
 
     public void LoadScene(string sceneName)
@@ -27,5 +28,6 @@ public class SinglePlayerUIManager : MonoBehaviour
 
     public void StartSelectGameScene() => LoadScene(SELECT_GAME_SCENE_NAME);
     public void StartGame() => LoadScene(GAME_SCENE_NAME);
+    public void Start2Game() => LoadScene(GAME_SCENE_2_NAME);
 
 }
