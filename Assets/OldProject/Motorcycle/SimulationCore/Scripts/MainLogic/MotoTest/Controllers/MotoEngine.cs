@@ -38,6 +38,7 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
     public float MaxSpeed { get => _maxSpeed; set => _maxSpeed = value; }
     public bool Reversing { get => _reversing; set => _reversing = value; }
     public float Clutch { get => _clutch; set => _clutch = value; }
+    public float CurrentRearWheelTorque { get; internal set; }
 
     public void BrakeSystemInnit(WheelCollider f, WheelCollider r)
     {
@@ -57,7 +58,7 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
 
     private void Settings()
     {
-        EngineTorque = 5500f;
+        EngineTorque = 4000f;
         MaxEngineRPM = 6000f;
         MinEngineRPM = 1000f;
         MaxSpeed = SettingsLoader.Instance.Settings.MAX_SPEED.value;
@@ -72,6 +73,9 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
 
     void Engine()
     {
+
+        CurrentRearWheelTorque = _rearWheel.motorTorque;
+
         EngineRPM = Mathf.Clamp((((Mathf.Abs((_forwardWheel.rpm + _rearWheel.rpm))) + MinEngineRPM)) / (CurrentGear + 1), MinEngineRPM, MaxEngineRPM);
         _enginePowerOverLifeTime.AddKey(Time.frameCount, EngineRPM);
 
@@ -90,7 +94,7 @@ public class MotoEngine : VehicleEngineBase, IVehicleEngine
         {
             if (Speed < 10)
             {
-                _rearWheel.motorTorque = ((EngineTorque * _motorInput) / 3f);
+                _rearWheel.motorTorque = EngineTorque * _motorInput;
             }
             else
             {

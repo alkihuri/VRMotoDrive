@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160.5, y: -56.2}
+  m_AnchoredPosition: {x: 0, y: -103.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1109765198
@@ -1589,6 +1589,10 @@ PrefabInstance:
       propertyPath: _rigidBody
       value: 
       objectReference: {fileID: 4233339706477022154}
+    - target: {fileID: 1357470067123714925, guid: 83f0035d175810f46bf2cc266d71da9c, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4382673182263455351, guid: 83f0035d175810f46bf2cc266d71da9c, type: 3}
       propertyPath: m_text
       value: 'MotoVR MVP TEST v0.4
@@ -1631,18 +1635,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1216221545273468221, guid: 83f0035d175810f46bf2cc266d71da9c, type: 3}
   m_PrefabInstance: {fileID: 8109800745892476991}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7234986322010649496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6947699363173752066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9e27763f517a84cbbd2ba5fef20991, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5786552749589107765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,6 +1654,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   m_RaycastTriggerInteraction: 1
+--- !u!114 &7234986322010649496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947699363173752066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9e27763f517a84cbbd2ba5fef20991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6947699363173752094 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1216221545273468193, guid: 83f0035d175810f46bf2cc266d71da9c, type: 3}

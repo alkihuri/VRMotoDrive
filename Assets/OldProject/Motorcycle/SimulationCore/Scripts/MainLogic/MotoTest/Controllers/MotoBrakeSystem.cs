@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MotoBrakeSystem : MonoBehaviour
 {
-    const int MAX_BRAKE = 17000;
-    const int BRAKE_COEFFCIENT = 15;
+    const int MAX_BRAKE = 15000;
+    const int BRAKE_COEFFCIENT = 5;
     private WheelCollider _forward;
     private WheelCollider _rear;
     private IVelocityController _velocityController;

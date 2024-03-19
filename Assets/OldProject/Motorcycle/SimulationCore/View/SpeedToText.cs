@@ -7,9 +7,21 @@ public class SpeedToText : MonoBehaviour
 
     [SerializeField]
     private Rigidbody _rigidBody;
+    private TextMeshProUGUI _text;
+
+    [SerializeField] RigidBodyController _velocityController;
+
     // Update is called once per frame
+
+    private void Awake()
+    {
+        _text = GetComponent<TextMeshProUGUI>();
+        _velocityController = GameObject.FindObjectOfType<RigidBodyController>();
+    }
     void Update()
     {
-        GetComponent<TextMeshProUGUI>().text = "speed : " + (_rigidBody.velocity.magnitude * ProjectConstants.UnityToRealSpeedCoeeficient).ToString("#.");
+        _text.text = "speed : "
+            + (_velocityController.CurrentSpeed).ToString("#.")
+            + "/" + _velocityController.MaxSpeed.ToString("#.");
     }
 }

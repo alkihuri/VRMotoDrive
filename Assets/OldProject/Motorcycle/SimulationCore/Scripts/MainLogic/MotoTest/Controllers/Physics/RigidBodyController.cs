@@ -13,10 +13,12 @@ public class RigidBodyController : MonoBehaviour, IVelocityController
     private float _maxAccelaration;
 
     public float MaxSpeed { get => _maxSpeed; set => _maxSpeed = value; }
+    public float MaxSpeedDefault { get; private set; }
     public float MinSpeed { get => _minSpeed; set => _minSpeed = value; }
     public bool MaxSpeedReached { get => _maxSpeedReached; set => _maxSpeedReached = value; }
     public float MaxAccelaration { get => _maxAccelaration; set => _maxAccelaration = value; }
     public float Accelaration { get => _accelaration; set => _accelaration = value; }
+    public float CurrentSpeed { get => _currentSpeed; set => _currentSpeed = value; }
 
     public Transform COM;
     private float _currentSpeed;
@@ -29,7 +31,7 @@ public class RigidBodyController : MonoBehaviour, IVelocityController
         LoadSettings();
     }
     private void Start()
-    { 
+    {
 
     }
     private void Cashing()
@@ -39,7 +41,7 @@ public class RigidBodyController : MonoBehaviour, IVelocityController
 
     private void LoadSettings()
     {
-        MaxSpeed = SettingsLoader.Instance.Settings.MAX_SPEED.value;
+        MaxSpeedDefault = SettingsLoader.Instance.Settings.MAX_SPEED.value;
         _maxAccelaration = SettingsLoader.Instance.Settings.MAX_SPEED_ACCELEARTION.Value;
         _rigidBody.mass = SettingsLoader.Instance.Settings.MOTO_MASS.value;
         _rigidBody.constraints = RigidbodyConstraints.FreezeRotationZ;
@@ -50,24 +52,28 @@ public class RigidBodyController : MonoBehaviour, IVelocityController
 
     private void FixedUpdate()
     {
-        MaxSpeedHandler(); 
+        MaxSpeedHandler();
     }
 
     private void AccelarationLimit()
     {
 
-        if(Accelaration > MaxAccelaration)
+        if (Accelaration > MaxAccelaration)
         {
-           // _rigidBody.velocity = _rigidBody.velocity.normalized * GetCurrentSpeed();
-        }    
+            // _rigidBody.velocity = _rigidBody.velocity.normalized * GetCurrentSpeed();
+        }
 
     }
 
     private void MaxSpeedHandler()
     {
         _speed = GetCurrentSpeed();
+        CurrentSpeed = _speed;
+
+        MaxSpeed = Mathf.Clamp(MaxSpeedDefault * InputHandler.Instance.Torque, MaxSpeedDefault / 2, MaxSpeedDefault);
+
         _maxSpeedReached = _speed > MaxSpeed;
-        if(_maxSpeedReached)
+        if (_maxSpeedReached)
         {
             _rigidBody.velocity = _rigidBody.velocity.normalized * (MaxSpeed / ProjectConstants.UnityToRealSpeedCoeeficient);
         }
@@ -80,12 +86,12 @@ public class RigidBodyController : MonoBehaviour, IVelocityController
 
     IEnumerator MeasureAccelaration()
     {
-        Accelaration =0 ;
+        Accelaration = 0;
         while (gameObject.activeInHierarchy)
         {
-            _currentSpeed = GetCurrentSpeed();
+            CurrentSpeed = GetCurrentSpeed();
             yield return new WaitForFixedUpdate();
-            Accelaration = _currentSpeed - GetCurrentSpeed();
+            Accelaration = CurrentSpeed - GetCurrentSpeed();
             _acceleration.AddKey(Time.frameCount, Accelaration);
         }
     }

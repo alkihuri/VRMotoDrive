@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
 
 public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
 {
@@ -9,7 +9,7 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
 
 
     [Header("Settings")]
-    [SerializeField, Range(1, 100)] private int SENSIVITY = 10;
+    [SerializeField, Range(1, 100)] private int SENSIVITY = 30;
     [SerializeField] Transform _vrHead;
 
     [SerializeField, Range(-1, 1)] float _headPositionX;
@@ -35,10 +35,10 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
                 angle -= 360;
             }
 
-            var absAngle = Mathf.Abs(angle);
+            var absAngle = Mathf.Abs(angle); 
+            float reversedClamp = Mathf.InverseLerp(0, angle, SENSIVITY);
 
-
-            return Mathf.Clamp(-angle /SENSIVITY, -1, 1);
+            return Mathf.Clamp(-angle / (SENSIVITY * _steerCurve.Evaluate(reversedClamp)), -1, 1);
         }
 
         set => _headZAngle = value;
@@ -54,12 +54,9 @@ public class HeadPositionHandler : MonoSinglethon<HeadPositionHandler>
                 angle -= 360;
             }
 
-            var absAngle = Mathf.Abs(angle);
+            var absAngle = Mathf.Abs(angle); 
 
-            float reversedClamp = Mathf.InverseLerp(0, angle, SENSIVITY);
-
-
-            return Mathf.Clamp((angle / (SENSIVITY * _steerCurve.Evaluate(reversedClamp))) * 2, -1, 1);
+            return Mathf.Clamp((angle / (SENSIVITY/3)), -1, 1);
         }
         set => _headXAngle = value;
     }
